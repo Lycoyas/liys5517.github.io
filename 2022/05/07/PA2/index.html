@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Liys">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="PA2, Liys">
+    <meta name="description" content="RTFSC—指令执行Decode&amp;lt;nemu&amp;#x2F;include&amp;#x2F;cpu&amp;#x2F;decode.h&amp;gt;
+123456789typedef struct Decode &amp;#123;    vaddr_t pc;   ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +20,7 @@
 
     
 
-    <title>Hello World | Liys</title>
+    <title>PA2 | Liys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -309,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">PA2</h1>
                 </div>
             </div>
         </div>
@@ -442,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-04-20
+                    2022-05-07
                 </div>
                 
 
@@ -463,20 +464,38 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <h1 id="RTFSC—指令执行"><a href="#RTFSC—指令执行" class="headerlink" title="RTFSC—指令执行"></a>RTFSC—指令执行</h1><h2 id="Decode"><a href="#Decode" class="headerlink" title="Decode"></a><code>Decode</code></h2><p>&lt;nemu&#x2F;include&#x2F;cpu&#x2F;decode.h&gt;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Decode</span> &#123;</span></span><br><span class="line">    <span class="type">vaddr_t</span> pc;</span><br><span class="line">    <span class="type">vaddr_t</span> snpc; <span class="comment">// static next pc</span></span><br><span class="line">    <span class="type">vaddr_t</span> dnpc; <span class="comment">// dynamic next pc</span></span><br><span class="line">    <span class="type">void</span> (*EHelper)(<span class="keyword">struct</span> Decode *);</span><br><span class="line">    Operand dest, src1, src2;</span><br><span class="line">    ISADecodeInfo isa;</span><br><span class="line">    IFDEF(CONFIG_ITRACE, <span class="type">char</span> logbuf[<span class="number">128</span>]);</span><br><span class="line">  &#125; Decode;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h2 id="ISADecodeInfo"><a href="#ISADecodeInfo" class="headerlink" title="ISADecodeInfo"></a><code>ISADecodeInfo</code></h2><p>&lt;nemu&#x2F;src&#x2F;isa&#x2F;$ISA&#x2F;include&#x2F;isa-def.h&gt;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line"><span class="number">16</span>   <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line"><span class="number">17</span>     <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line"><span class="number">18</span>       <span class="type">uint32_t</span> opcode1_0 : <span class="number">2</span>;</span><br><span class="line"><span class="number">19</span>       <span class="type">uint32_t</span> opcode6_2 : <span class="number">5</span>;</span><br><span class="line"><span class="number">20</span>       <span class="type">uint32_t</span> rd        : <span class="number">5</span>;</span><br><span class="line"><span class="number">21</span>       <span class="type">uint32_t</span> funct3    : <span class="number">3</span>;</span><br><span class="line"><span class="number">22</span>       <span class="type">uint32_t</span> rs1       : <span class="number">5</span>;</span><br><span class="line"><span class="number">23</span>       <span class="type">int32_t</span>  simm11_0  :<span class="number">12</span>;</span><br><span class="line"><span class="number">24</span>     &#125; i;</span><br><span class="line"><span class="number">25</span>     <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line"><span class="number">26</span>       <span class="type">uint32_t</span> opcode1_0 : <span class="number">2</span>;</span><br><span class="line"><span class="number">27</span>       <span class="type">uint32_t</span> opcode6_2 : <span class="number">5</span>;</span><br><span class="line"><span class="number">28</span>       <span class="type">uint32_t</span> imm4_0    : <span class="number">5</span>;</span><br><span class="line"><span class="number">29</span>       <span class="type">uint32_t</span> funct3    : <span class="number">3</span>;</span><br><span class="line"><span class="number">30</span>       <span class="type">uint32_t</span> rs1       : <span class="number">5</span>;</span><br><span class="line"><span class="number">31</span>       <span class="type">uint32_t</span> rs2       : <span class="number">5</span>;</span><br><span class="line"><span class="number">32</span>       <span class="type">int32_t</span>  simm11_5  : <span class="number">7</span>;</span><br><span class="line"><span class="number">33</span>     &#125; s;</span><br><span class="line"><span class="number">34</span>     <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line"><span class="number">35</span>       <span class="type">uint32_t</span> opcode1_0 : <span class="number">2</span>;</span><br><span class="line"><span class="number">36</span>       <span class="type">uint32_t</span> opcode6_2 : <span class="number">5</span>;</span><br><span class="line"><span class="number">37</span>       <span class="type">uint32_t</span> rd        : <span class="number">5</span>;</span><br><span class="line"><span class="number">38</span>       <span class="type">uint32_t</span> imm31_12  :<span class="number">20</span>;</span><br><span class="line"><span class="number">39</span>     &#125; u;</span><br><span class="line"><span class="number">40</span>     <span class="type">uint32_t</span> val;</span><br><span class="line"><span class="number">41</span>   &#125; instr;</span><br><span class="line"><span class="number">42</span> &#125; riscv32_ISADecodeInfo;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h2 id="fetch-decode-exec-updatepc"><a href="#fetch-decode-exec-updatepc" class="headerlink" title="fetch_decode_exec_updatepc()"></a><code>fetch_decode_exec_updatepc()</code></h2><p>&lt;nemu&#x2F;src&#x2F;cpu&#x2F;cpu-exec.c&gt;</p>
+<p>CPU执行当前PC指向的一条指令，然后更新PC</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">fetch_decode_exec_updatepc</span><span class="params">(Decode *s)</span> &#123;</span><br><span class="line">        fetch_decode(s, cpu.pc);</span><br><span class="line">        s-&gt;EHelper(s);<span class="comment">//调用模拟指令函数，模拟指令执行</span></span><br><span class="line">        cpu.pc = s-&gt;dnpc;<span class="comment">//更新PC，指向下一条指令</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="fetch-decode"><a href="#fetch-decode" class="headerlink" title="fetch_decode()"></a><code>fetch_decode()</code></h2><p>&lt;nemu&#x2F;src&#x2F;cpu&#x2F;cpu-exec.c&gt;</p>
+<p>取指，译码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">fetch_decode</span><span class="params">(Decode *s, <span class="type">vaddr_t</span> pc)</span> &#123;</span><br><span class="line">       s-&gt;pc = pc;</span><br><span class="line">       s-&gt;snpc = pc;</span><br><span class="line">       <span class="comment">//idx用于索引 g_exec_table 数组</span></span><br><span class="line">       <span class="type">int</span> idx = isa_fetch_decode(s);</span><br><span class="line">       s-&gt;dnpc = s-&gt;snpc;</span><br><span class="line">       <span class="comment">//数组返回一个用于模拟指令执行的“执行辅助函数”</span></span><br><span class="line">       s-&gt;EHelper = g_exec_table[idx];</span><br><span class="line">       <span class="meta">#<span class="keyword">ifdef</span> CONFIG_ITRACE</span></span><br><span class="line">       ......</span><br><span class="line">       <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="取指"><a href="#取指" class="headerlink" title="取指"></a>取指</h2><h3 id="isa-fetch-decode"><a href="#isa-fetch-decode" class="headerlink" title="isa_fetch_decode()"></a><code>isa_fetch_decode()</code></h3><p>&lt;nemu&#x2F;src&#x2F;isa&#x2F;$ISA&#x2F;instr&#x2F;decode.c&gt;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">isa_fetch_decode</span><span class="params">(Decode *s)</span> &#123;</span><br><span class="line">    <span class="comment">//取指令</span></span><br><span class="line">    s-&gt;isa.instr.val = instr_fetch(&amp;s-&gt;snpc, <span class="number">4</span>);</span><br><span class="line">    <span class="type">int</span> idx = table_main(s);</span><br><span class="line">    <span class="keyword">return</span> idx;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="instr-fetch"><a href="#instr-fetch" class="headerlink" title="instr_fetch()"></a><code>instr_fetch()</code></h3><p>&lt;nemu&#x2F;include&#x2F;cpu&#x2F;ifetch.h&gt;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">uint32_t</span> <span class="title function_">instr_fetch</span><span class="params">(<span class="type">vaddr_t</span> *pc, <span class="type">int</span> len)</span> &#123;   </span><br><span class="line">    <span class="comment">//访问内存，根据len的长度取指令</span></span><br><span class="line">    <span class="type">uint32_t</span> instr = vaddr_ifetch(*pc, len);</span><br><span class="line">    <span class="comment">//更新PC,s-&gt;snpc</span></span><br><span class="line">    (*pc) += len;</span><br><span class="line">    <span class="keyword">return</span> instr;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="译码"><a href="#译码" class="headerlink" title="译码"></a>译码</h2><h3 id="宏：def-INSTR-IDTAB"><a href="#宏：def-INSTR-IDTAB" class="headerlink" title="宏：def_INSTR_IDTAB"></a>宏：<code>def_INSTR_IDTAB</code></h3><p>&lt;nemu&#x2F;include&#x2F;cpu&#x2F;decode.h&gt;</p>
+<p>宏展开：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  <span class="type">uint32_t</span> key, mask, shift;</span><br><span class="line">  pattern_decode(<span class="string">&quot;??????? ????? ????? ??? ????? 01101 11&quot;</span>, <span class="number">37</span>, &amp;key, &amp;mask, &amp;shift);</span><br><span class="line">  <span class="keyword">if</span> (((s-&gt;isa.instr.val &gt;&gt; shift) &amp; mask) == key) &#123;</span><br><span class="line">    <span class="comment">//进一步译码</span></span><br><span class="line">    decode_U(s, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> table_lui(s);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">while</span> (<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="宏：译码辅助函数def-DHelper"><a href="#宏：译码辅助函数def-DHelper" class="headerlink" title="宏：译码辅助函数def_DHelper"></a>宏：译码辅助函数<code>def_DHelper</code></h3><p>&lt;nemu&#x2F;include&#x2F;cpu&#x2F;decode.h&gt;    </p>
+<p>译码辅助函数通过宏<code>def_DHelper</code>定义</p>
+<p><code>#define def_DHelper(name) void concat(decode_, name) (Decode *s)</code></p>
+<h3 id="宏：译码操作数辅助函数-def-DopHelper"><a href="#宏：译码操作数辅助函数-def-DopHelper" class="headerlink" title="宏：译码操作数辅助函数 def_DopHelper"></a>宏：译码操作数辅助函数 <code>def_DopHelper</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nemu/src/isa/riscv32/instr/decode.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> def_DopHelper(name) \</span></span><br><span class="line"><span class="meta">  void concat(decode_op_, name) (Decode *s, Operand *op, word_t val, bool flag)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><h2 id="更新PC"><a href="#更新PC" class="headerlink" title="更新PC"></a>更新PC</h2>
                 
             </div>
             <hr/>
@@ -502,7 +521,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://liys5517.github.io/2022/04/20/hello-world/">https://liys5517.github.io/2022/04/20/hello-world/</a>
+                    <a href="https://liys5517.github.io/2022/05/07/PA2/">https://liys5517.github.io/2022/05/07/PA2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -715,13 +734,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/07/PA2/">
+                <a href="/2022/05/25/DDR/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="PA2">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">PA2</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -732,7 +751,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-07
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-25
                         </span>
                         <span class="publish-author">
                             
@@ -749,7 +768,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2022/04/20/hello-world/">
@@ -779,7 +798,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
